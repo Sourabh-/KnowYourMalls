@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, DrawerLayoutAndroid, Text, ToolbarAndroid } from 'react-native';
+import { View, DrawerLayoutAndroid, Text } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
+import styles from '../../assets/styles/style';
 
 export default class Menu extends Component {
 	constructor(props) {
@@ -8,24 +10,48 @@ export default class Menu extends Component {
 
 	render() {
 
-		const navigationView = (
-			<View style={{flex: 1, backgroundColor: 'grey'}}>
-		      <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>
-		    </View>
-		);
+		const list = [
+		  {
+		    name: 'Bangalore'
+		  },
+		  {
+		    name: 'Pune'
+		  },
+		  {
+		    name: 'Mumbai'
+		  },
+		  {
+		    name: 'Chennai'
+		  },
+		  {
+		    name: 'Kolkata'
+		  },
+		  {
+		    name: 'Delhi'
+		  }
+		]
 
 		return (
-			<DrawerLayoutAndroid
-			  ref={(drawer) => this.props.mapDrawer(drawer)}
-		      drawerWidth={200}
-		      drawerPosition={DrawerLayoutAndroid.positions.Left}
-		      drawerBackgroundColor="grey"
-		      renderNavigationView={() => navigationView}>
-		      <View style={{flex: 1, alignItems: 'center'}}>
-		        <Text style={{margin: 10, fontSize: 15, textAlign: 'right'}}>Hello</Text>
-		        <Text style={{margin: 10, fontSize: 15, textAlign: 'right'}}>World!</Text>
-		      </View>
-		    </DrawerLayoutAndroid>
+			<View style={styles.menuContainer}>
+		      <Text style={styles.menuHeading}>Cities</Text>
+		      <List>
+				  {
+				    list.map((item, i) => (
+				      <ListItem
+				      	roundAvatar
+				        key={i}
+				        title={item.name}
+				        hideChevron={true}
+				        avatar={require("../../assets/images/city.png")}
+				        avatarStyle={{
+				        	backgroundColor: "#FFFFFF"
+				        }}
+				        containerStyle={styles.listItem}
+				      />
+				    ))
+				  }
+			  </List>
+		    </View>
 		);
 	}
 }

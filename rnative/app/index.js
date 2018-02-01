@@ -14,9 +14,7 @@ export default class Index extends Component {
   render() {
 
     return (
-      <View>
         <Home/>
-      </View>
     );
   }
 }

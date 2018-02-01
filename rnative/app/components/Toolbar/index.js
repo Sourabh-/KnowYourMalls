@@ -1,21 +1,23 @@
 import React from 'react';
-import { ToolbarAndroid } from 'react-native';
+import { Header, Icon } from 'react-native-elements';
 import styles from '../../assets/styles/style';
 
 const Toolbar = ({ title, handleMenuIconClicked }) => {
 	return (
-		<ToolbarAndroid
-          navIcon={require('../../assets/images/menu.png')}
-          title={title}
-          titleColor="#FFFFFF"
-          actions={[
-          	{ title: 'Settings', 
-          	  icon: require('../../assets/images/toolbar.png'), 
-          	  show: 'always'
+		<Header
+            statusBarProps={{ barStyle: 'light-content', backgroundColor: '#007f00' }}
+            leftComponent={{ icon: 'menu', color: '#fff', underlayColor: '#1CAE21', onPress: handleMenuIconClicked }}
+            centerComponent={{ text: title, style: { color: '#fff' } }}
+            rightComponent={
+               <Icon
+                    type="material-community"
+                    name="dots-vertical"
+                    color="#FFFFFF"
+               />
             }
-          ]}
-          onIconClicked={handleMenuIconClicked}
-          style={styles.toolbar} />
+            backgroundColor="#1CAE21"
+            outerContainerStyles={{height: 56}}
+          />
 	)
 }
 

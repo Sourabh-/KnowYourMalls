@@ -2,34 +2,50 @@ import React, { Component } from 'react';
 import { View, DrawerLayoutAndroid, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import Menu from '../Menu';
+import styles from '../../assets/styles/style';
 
 export default class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			drawer: ''
+			isDrawerOpen: false
 		};
 	}
 
 	handleMenuIconClicked = () => {
-    	this.state.drawer.openDrawer();
-  	}
-
-  	mapDrawer = (drawer) => {
-  		if(!this.state.drawer)
-	  		this.setState({
-	  			drawer
-	  		})
+		this.setState({
+			isDrawerOpen: !this.state.isDrawerOpen
+		}, () => {
+			if(this.state.isDrawerOpen)
+				this.drawer.openDrawer();
+			else
+				this.drawer.closeDrawer();
+		})
   	}
 
 	render() {
-		const {  handleMenuIconClicked, mapDrawer } = this;
+		const {  handleMenuIconClicked } = this;
+
+		const navigationView = (
+			<Menu/>
+		);
 
 		return (
-			<View>
+			<DrawerLayoutAndroid
+			  ref={(drawer) => this.drawer = drawer}
+		      drawerWidth={300}
+		      drawerPosition={DrawerLayoutAndroid.positions.Left}
+		      renderNavigationView={() => navigationView}
+		      onDrawerClose={() => { this.setState({ isDrawerOpen: false }) }}
+		      onDrawerOpen={() => { this.setState({ isDrawerOpen: true }) }}>
 		      <Toolbar title={"Know Your Malls"} handleMenuIconClicked={handleMenuIconClicked}/>
-		      <Menu mapDrawer={mapDrawer}/>
-		    </View>
+		      <View style={styles.homeContainer}>
+		      	<Text style={styles.homeText}>
+		      		Hi There! 
+		      		{"\n"} 
+		      		To Get Started Please Select City From Sidemenu!</Text>
+		      </View>
+		    </DrawerLayoutAndroid>
 		);
 	}
 }
