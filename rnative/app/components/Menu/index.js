@@ -9,44 +9,25 @@ export default class Menu extends Component {
 	}
 
 	render() {
-
-		const list = [
-		  {
-		    name: 'Bangalore'
-		  },
-		  {
-		    name: 'Pune'
-		  },
-		  {
-		    name: 'Mumbai'
-		  },
-		  {
-		    name: 'Chennai'
-		  },
-		  {
-		    name: 'Kolkata'
-		  },
-		  {
-		    name: 'Delhi'
-		  }
-		]
+		let { handleCityClick, cities } = this.props;
 
 		return (
 			<View style={styles.menuContainer}>
 		      <Text style={styles.menuHeading}>Cities</Text>
 		      <List>
 				  {
-				    list.map((item, i) => (
+				    cities.map((item, i) => (
 				      <ListItem
 				      	roundAvatar
 				        key={i}
-				        title={item.name}
+				        title={item.city}
 				        hideChevron={true}
 				        avatar={require("../../assets/images/city.png")}
 				        avatarStyle={{
 				        	backgroundColor: "#FFFFFF"
 				        }}
 				        containerStyle={styles.listItem}
+				        onPress={() => handleCityClick(item)}
 				      />
 				    ))
 				  }

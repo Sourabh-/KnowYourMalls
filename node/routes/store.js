@@ -19,7 +19,7 @@ router.get("/v1/get/:mallId", (req, res) => {
 	})
 })
 
-router.get("/v1/search", (req, res) => {
+router.get("/v1/search/:cityId", (req, res) => {
 	//Tags should be self suffciant
 	if(!req.query.tags) 
 		return res.status(400).json({
@@ -29,8 +29,13 @@ router.get("/v1/search", (req, res) => {
 	//Tags are comma separated string
 	db.connect(req.app.pool)
 	.then(async (client) => {
-		let tags = req.query.tags.split(",").join("|");
-		let result = await client.query('SELECT * FROM stores WHERE "tags" REGEXP "$1"', [tags]);
+		let tags = req.query.tags.split(",");
+		let likeQuery = ` LOWER(tags) LIKE LOWER('%${tags[0]}%')`;
+		for(let i=1; i<tags.length; i++) {
+			likeQuery += ` OR LOWER(tags) LIKE LOWER('%${tags[0]}%') `;
+		}
+
+		let result = await client.query(`SELECT * FROM stores WHERE ${likeQuery} AND "mallId" IN (SELECT "mallId" FROM malls WHERE "cityId"='${req.params.cityId}')`);
 		if(!result.rows.length)
 			return res.status(204).json();
 		res.status(200).json(result.rows);

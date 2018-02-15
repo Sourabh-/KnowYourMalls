@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require('../utility/postgres/pool');
 
 router.get("/v1/get", (req, res) => {
+	console.log("HERE");
 	db.connect(req.app.pool)
 	.then(async (client) => {
 		let result = await client.query('SELECT * FROM cities');
