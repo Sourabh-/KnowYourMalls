@@ -8,7 +8,7 @@ import Toolbar from '../../components/Toolbar';
 
 export default class StoreDetails extends Component {
 	render() {
-		let { store, city, mall, categoriesFilter } = this.props;
+		let { store, city, mall } = this.props;
 
 		return (
 			<View>

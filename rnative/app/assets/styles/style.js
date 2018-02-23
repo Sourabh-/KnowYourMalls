@@ -104,6 +104,13 @@ const styles = StyleSheet.create({
   },
   storeImageContainer: {
     height: 150
+  },
+  searchBtnContainer: {
+    marginTop: 10,
+    padding: 5
+  },
+  searchBtn: {
+    width: '100%'
   }
 });
 

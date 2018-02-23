@@ -1,12 +1,12 @@
 {
 	"server": {
-		"host": "http://10.65.73.160",
+		"host": "http://192.168.2.4",
 		"port": 6000
 	},
 	"endpoints": {
 		"getCities": "/city/v1/get",
 		"getMalls": "/mall/v1/get/",
 		"getStores": "/store/v1/get/",
-		"searchStores": "/store/v1/search"
+		"searchStores": "/store/v1/search/"
 	}
 }

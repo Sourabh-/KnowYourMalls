@@ -16,7 +16,8 @@ export default class Home extends Component {
 
 	handleSearchPress = () => {
 		Actions.Search({
-			city: this.props.getSelectedCity()
+			city: this.props.getSelectedCity(),
+			malls: this.props.getMalls()
 		});
 	}
 

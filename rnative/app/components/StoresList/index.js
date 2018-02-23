@@ -3,7 +3,7 @@ import { ScrollView, Text } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import styles from '../../assets/styles/style';
 
-const StoresList = ({ handleDetailsNavigate, stores, isAjaxDone, categoriesFilter }) => {
+const StoresList = ({ handleDetailsNavigate, stores, isAjaxDone, categoriesFilter, comingSoonNotReq }) => {
 
 	const getComingSoonText = () => {
 		return isAjaxDone ? "Coming Soon..." : "Loading...";
@@ -36,7 +36,7 @@ const StoresList = ({ handleDetailsNavigate, stores, isAjaxDone, categoriesFilte
 				  }
 				</List> 
 				: <Text style={styles.comingSoonText}>
-					{getComingSoonText()}
+					{comingSoonNotReq ? " " : getComingSoonText()}
 				  </Text>
 			}
 		</ScrollView>
