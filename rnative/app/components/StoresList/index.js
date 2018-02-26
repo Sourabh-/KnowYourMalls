@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import styles from '../../assets/styles/style';
 
@@ -22,7 +22,12 @@ const StoresList = ({ handleDetailsNavigate, stores, isAjaxDone, categoriesFilte
 						      	roundAvatar
 						        key={i}
 						        title={item.store}
-						        subtitle={item.category}
+						        subtitle={
+						        	<View style={styles.storesSubTitleContainer}>
+						        		<Text>{item.category}</Text>
+						        		<Text>{ item.floor ? `${item.floor} Floor` : '' }</Text>
+						        	</View>
+						        }
 						        subtitleStyle={styles.mallListSubtitle}
 						        avatar={require("../../assets/images/store.png")}
 						        avatarStyle={{

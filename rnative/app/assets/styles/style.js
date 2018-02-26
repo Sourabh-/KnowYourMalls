@@ -111,6 +111,9 @@ const styles = StyleSheet.create({
   },
   searchBtn: {
     width: '100%'
+  },
+  storesSubTitleContainer: {
+    marginLeft: 10
   }
 });
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, DrawerLayoutAndroid, Text, Button } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import Home from './pages/Home';
 import Menu from './components/Menu';
 import Routes from './Routes';
@@ -18,6 +19,7 @@ export default class Index extends Component {
   }
 
   componentDidMount() {
+    SplashScreen.hide();
   	httpGet(config.server.host + ":" + config.server.port + config.endpoints.getCities)
   	.then((cities) => {
   		this.setState({

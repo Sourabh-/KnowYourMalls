@@ -1,6 +1,6 @@
 {
 	"server": {
-		"host": "http://192.168.2.4",
+		"host": "http://192.168.2.3",
 		"port": 6000
 	},
 	"endpoints": {

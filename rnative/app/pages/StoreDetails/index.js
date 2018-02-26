@@ -18,12 +18,13 @@ export default class StoreDetails extends Component {
 				  	leftIconType="material"
 				  	handleMenuIconClicked={Actions.pop}/>
 		          	<Tile
-					  imageSrc={require('../../assets/images/archmall.jpg')}
+					  imageSrc={require('../../assets/images/storeLarge.png')}
 					  title={store.store}
 					  imageContainerStyle={styles.storeImageContainer}
 					  height={500}>
 					  <View>
 					    <Text style={styles.locationText}>
+					    	{store.floor ? `${item.floor} Floor\n` : ""}
 					    	{mall.mall}, {mall.location} {"\n"}
 					    	<Text>Category-</Text> {store.category}
 					    </Text>
