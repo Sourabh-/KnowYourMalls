@@ -1,12 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const { Pool } = require('pg')
+const { Pool } = require('pg');
+const fs = require('fs');
+const config = JSON.parse(fs.readFileSync("./config.json"));
+
 const pool = new Pool({
-  host: 'localhost',
-  user: 'postgres',
-  password: 'root',
-  database: 'KnowYourMalls',
+  host: config.postgres.host,
+  user: config.postgres.user,
+  password: config.postgres.pass,
+  database: config.postgres.database,
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
