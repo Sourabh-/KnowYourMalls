@@ -5,15 +5,20 @@ const { Pool } = require('pg');
 const fs = require('fs');
 const config = JSON.parse(fs.readFileSync("./config.json"));
 
-const pool = new Pool({
+let poolOptions = process.env.DATABASE_URL ? {
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+} : {
   host: config.postgres.host,
   user: config.postgres.user,
   password: config.postgres.pass,
   database: config.postgres.database,
   max: 20,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-});
+  connectionTimeoutMillis: 2000
+};
+
+const pool = new Pool(poolOptions);
 
 const city = require('./routes/city');
 const mall = require('./routes/mall');
