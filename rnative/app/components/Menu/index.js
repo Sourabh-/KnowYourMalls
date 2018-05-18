@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, DrawerLayoutAndroid, Text } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { View, DrawerLayoutAndroid, Text, List } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import styles from '../../assets/styles/style';
 
 export default class Menu extends Component {
@@ -14,8 +14,7 @@ export default class Menu extends Component {
 		return (
 			<View style={styles.menuContainer}>
 		      <Text style={styles.menuHeading}>Cities</Text>
-		      <List>
-				  {
+		      	{
 				    cities.map((item, i) => (
 				      <ListItem
 				      	roundAvatar
@@ -30,8 +29,7 @@ export default class Menu extends Component {
 				        onPress={() => handleCityClick(item)}
 				      />
 				    ))
-				  }
-			  </List>
+				}
 		    </View>
 		);
 	}

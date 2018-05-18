@@ -1,23 +1,20 @@
 import React from 'react';
 import { ScrollView, Text } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 import styles from '../../assets/styles/style';
 
 const MallsList = ({ handleOnRowPress, handleSearchPress, malls }) => {
 
 	return (
 		<ScrollView>
-			<List containerStyle={styles.searchBox}>
-		      <ListItem
+			<ListItem
 		      	roundAvatar
 		        key={0}
-		        title="Search"
+		        title="Search Stores"
 		        leftIcon={{name: 'search'}}
 		        onPress={handleSearchPress}
 		      />
-			</List>
 
-			<List>
 			  {
 			    malls.map((item, i) => (
 			      <ListItem
@@ -35,7 +32,6 @@ const MallsList = ({ handleOnRowPress, handleSearchPress, malls }) => {
 			      />
 			    ))
 			  }
-			</List>
 		</ScrollView>
 	);
 }

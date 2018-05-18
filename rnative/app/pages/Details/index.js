@@ -23,7 +23,7 @@ export default class Details extends Component {
 
 	componentDidMount() {
 		let { mall, city } = this.props;
-		httpGet(config.server.host + ":" + config.server.port + config.endpoints.getStores + mall.mallId)
+		httpGet(config.server.url + config.endpoints.getStores + mall.mallId)
 		.then((stores) => {
 			this.setState({
 				stores,

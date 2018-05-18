@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, DrawerLayoutAndroid, Text, ToastAndroid, Keyboard } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { SearchBar, Button } from 'react-native-elements'
+import { SearchBar, Button, Icon } from 'react-native-elements'
 
 import { httpGet, httpPost } from '../../utility/ApiWrapper';
 import config from '../../utility/config.json';
@@ -24,7 +24,7 @@ export default class Search extends Component {
 			//DISPLAY TOAST MESSAGE
 			ToastAndroid.show("Enter some text...", ToastAndroid.SHORT);
 		} else {
-			httpGet(config.server.host + ":" + config.server.port + config.endpoints.searchStores + this.props.city.cityId + "?tags=" + this.state.searchText)
+			httpGet(config.server.url + config.endpoints.searchStores + this.props.city.cityId + "?tags=" + this.state.searchText)
 		  	.then((stores) => {
 		  		this.setState({
 		  			stores
@@ -68,25 +68,36 @@ export default class Search extends Component {
 
 		return (
 			<View>
-				<Toolbar 
+				{/*<Toolbar 
 					title={ `Search- ${city.city}` }
 					leftIcon="arrow-back"
 				  	leftIconType="material"
-				  	handleMenuIconClicked={Actions.pop}/>
+				  	handleMenuIconClicked={Actions.pop}/>*/}
 
 				<SearchBar
 					ref={search => this.searchBar = search}
 					containerStyle={styles.searchContainer}
+					searchIcon={
+						<Icon
+		                    name="arrow-back"
+		                    type="material"
+		                    underlayColor="#FFFFFF"
+		                    color="#999"
+		                    onPress={Actions.pop}
+		                />
+					}
 					round
 					platform="android"
-					placeholder='Search...'
+					placeholder={ `Search- ${city.city}` }
+					onCancel={Actions.pop}
 					onChangeText={handleTextChange}
-					autoFocus={true} />
+					autoFocus={true}
+					inputStyle={styles.searchInputBox} />
 
 				<Button
 					containerStyle={styles.searchBtnContainer}
 					buttonStyle={styles.searchBtn}
-					text="Search"
+					title="Search"
 					onPress={handleSearch}/>
 				<StoresList 
 					handleDetailsNavigate={handleDetailsNavigate} 

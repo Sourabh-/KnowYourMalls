@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF'
   },
   searchContainer: {
-    left: 6
+    
   },
   storeImgSection: {
     width: '100%',
@@ -114,7 +114,9 @@ const styles = StyleSheet.create({
   },
   storesSubTitleContainer: {
     marginLeft: 10
-  }
+  },
+  searchInputBox: {
+    fontSize: 14  }
 });
 
 export default styles;

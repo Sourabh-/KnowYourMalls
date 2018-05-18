@@ -20,7 +20,7 @@ export default class Index extends Component {
 
   componentDidMount() {
     SplashScreen.hide();
-  	httpGet(config.server.host + ":" + config.server.port + config.endpoints.getCities)
+  	httpGet(config.server.url + config.endpoints.getCities)
   	.then((cities) => {
   		this.setState({
   			cities
@@ -45,7 +45,7 @@ export default class Index extends Component {
   handleCityClick = (city) => {
 	this.drawer.closeDrawer();
 	//Fetch all malls in this city
-	httpGet(config.server.host + ":" + config.server.port + config.endpoints.getMalls + city.cityId)
+	httpGet(config.server.url + config.endpoints.getMalls + city.cityId)
   	.then((malls) => {
   		this.setState({
   			malls
