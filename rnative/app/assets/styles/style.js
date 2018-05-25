@@ -110,13 +110,48 @@ const styles = StyleSheet.create({
     padding: 5
   },
   searchBtn: {
-    width: '100%'
+    width: '100%',
+    backgroundColor: '#338A3E'
   },
   storesSubTitleContainer: {
     marginLeft: 10
   },
   searchInputBox: {
-    fontSize: 14  }
+    fontSize: 14  
+  },
+  appListItem: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 15,
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  appListItemSubTitle: {
+    fontSize: 12
+  },
+  appListItemText: {
+    fontSize: 12
+  },
+  appListItemImageContainer: {
+    width: 46,
+    height: 46,
+    borderRadius: 23,
+    backgroundColor: '#B1B1B1',
+    marginRight: 20
+  },
+  appListItemImage: {
+    width: 46,
+    height: 46,
+    borderRadius: 23
+  },
+  appListItemTextContainer: {
+    flex: 1, 
+    justifyContent: 'center'
+  },
+  storeFlatList: {
+    marginBottom: 80
+  }
 });
 
 export default styles;

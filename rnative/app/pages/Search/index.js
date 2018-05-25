@@ -26,6 +26,9 @@ export default class Search extends Component {
 		} else {
 			httpGet(config.server.url + config.endpoints.searchStores + this.props.city.cityId + "?tags=" + this.state.searchText)
 		  	.then((stores) => {
+		  		if(!stores.length)
+		  			ToastAndroid.show("No results found!", ToastAndroid.SHORT);
+		  		
 		  		this.setState({
 		  			stores
 		  		})
@@ -72,7 +75,7 @@ export default class Search extends Component {
 					title={ `Search- ${city.city}` }
 					leftIcon="arrow-back"
 				  	leftIconType="material"
-				  	handleMenuIconClicked={Actions.pop}/>*/}
+				  	handleMenuIconClick={Actions.pop}/>*/}
 
 				<SearchBar
 					ref={search => this.searchBar = search}
@@ -88,7 +91,7 @@ export default class Search extends Component {
 					}
 					round
 					platform="android"
-					placeholder={ `Search- ${city.city}` }
+					placeholder={ `Search Stores- ${city.city}` }
 					onCancel={Actions.pop}
 					onChangeText={handleTextChange}
 					autoFocus={true}

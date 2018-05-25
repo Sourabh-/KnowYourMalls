@@ -22,18 +22,19 @@ export default class Home extends Component {
 	}
 
 	render() {
-		let { handleMenuIconClicked, getSelectedCity, getMalls } = this.props;
+		let { handleMenuIconClick, getSelectedCity, getMalls } = this.props;
 		let { handleOnRowPress, handleSearchPress } = this;
 
 		return (
 			<View>
 			  <Toolbar 
 			  	title={getSelectedCity().city || "Know Your Malls"} 
-			  	handleMenuIconClicked={handleMenuIconClicked}
+			  	handleMenuIconClick={handleMenuIconClick}
 			  	leftIcon="menu"
 			  	leftIconType="material"
-			  	rightIcon="dots-vertical"
-			  	rightIconType="material-community"/>
+			  	rightIcon={getSelectedCity() ? "search" : ''}
+			  	rightIconType="evilicon"
+			  	handleRightIconClick={handleSearchPress}/>
 		      {!getSelectedCity() ?
 		      	<View style={styles.initialText}>
 		      		<Text style={styles.homeText}>
@@ -45,7 +46,6 @@ export default class Home extends Component {
 		      	<MallsList 
 		      		selectedCity={getSelectedCity} 
 		      		handleOnRowPress={handleOnRowPress} 
-		      		handleSearchPress={handleSearchPress} 
 		      		malls={getMalls()}/>
 		       }
 		    </View>

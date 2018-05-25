@@ -79,7 +79,7 @@ export default class Details extends Component {
 					title={mall.mall}
 					leftIcon="arrow-back"
 				  	leftIconType="material"
-				  	handleMenuIconClicked={Actions.pop}
+				  	handleMenuIconClick={Actions.pop}
 				  	rightIcon="filter"
 				  	rightIconType="material-community"
 				  	handleRightIconClick={openFilterPopup}/>

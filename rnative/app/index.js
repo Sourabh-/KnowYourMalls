@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, DrawerLayoutAndroid, Text, Button } from 'react-native';
+import { View, DrawerLayoutAndroid, Text, Button, AsyncStorage } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import Home from './pages/Home';
 import Menu from './components/Menu';
 import Routes from './Routes';
+import AppWelcome from './components/AppWelcome';
 import { httpGet, httpPost } from './utility/ApiWrapper';
 import config from './utility/config.json';
 
@@ -14,24 +15,48 @@ export default class Index extends Component {
 		isDrawerOpen: false,
 		selectedCity: '',
 		cities: [],
-		malls: []
+		malls: [],
+    isInitialized: true
 	};
   }
 
   componentDidMount() {
-    SplashScreen.hide();
-  	httpGet(config.server.url + config.endpoints.getCities)
-  	.then((cities) => {
-  		this.setState({
-  			cities
-  		})
-  	})
-  	.catch((err) => {
-  		console.log(err);
-  	})
+    AsyncStorage.getItem("isInitialized", (err, result) => {
+      if(err) {
+        SplashScreen.hide();
+        console.log(err);
+      } else {
+        if(!result) {
+          this.setState({ isInitialized: false }, () => {
+            SplashScreen.hide();
+            this.initialize();
+          })
+        } else {
+          SplashScreen.hide();
+          this.initialize();
+        }
+      }  
+    })
   }
 
-  handleMenuIconClicked = () => {
+  initialize = () => {
+    httpGet(config.server.url + config.endpoints.getCities)
+    .then((cities) => {
+      this.setState({
+        cities
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  updateIsInitialized = () => {
+    AsyncStorage.setItem('isInitialized', 'true', (err) => { console.log(err); });
+    this.setState({ isInitialized: true });
+  }
+
+  handleMenuIconClick = () => {
 	this.setState({
 		isDrawerOpen: !this.state.isDrawerOpen
 	}, () => {
@@ -69,23 +94,28 @@ export default class Index extends Component {
   }
 
   render() {
-  	const {  handleMenuIconClicked, handleCityClick, getSelectedCity, getMalls } = this;
-	let { selectedCity, cities } = this.state;
+  	const {  handleMenuIconClick, handleCityClick, getSelectedCity, getMalls, updateIsInitialized } = this;
+	  let { selectedCity, cities, isInitialized } = this.state;
 
-	const navigationView = (
-		<Menu handleCityClick={handleCityClick} cities={cities}/>
-	);
+	  const navigationView = (
+		  <Menu handleCityClick={handleCityClick} cities={cities}/>
+	  );
 
-    return (
+    console.log(isInitialized);
+    if(isInitialized) {
+      return (
         <DrawerLayoutAndroid
-		  ref={(drawer) => this.drawer = drawer}
-	      drawerWidth={300}
-	      drawerPosition={DrawerLayoutAndroid.positions.Left}
-	      renderNavigationView={() => navigationView}
-	      onDrawerClose={() => { this.setState({ isDrawerOpen: false }) }}
-	      onDrawerOpen={() => { this.setState({ isDrawerOpen: true }) }}>
-		   <Routes handleMenuIconClicked={handleMenuIconClicked} getSelectedCity={getSelectedCity} getMalls={getMalls}/>
-		</DrawerLayoutAndroid>
-    );
+          ref={(drawer) => this.drawer = drawer}
+          drawerWidth={300}
+          drawerPosition={DrawerLayoutAndroid.positions.Left}
+          renderNavigationView={() => navigationView}
+          onDrawerClose={() => { this.setState({ isDrawerOpen: false }) }}
+          onDrawerOpen={() => { this.setState({ isDrawerOpen: true }) }}>
+          <Routes handleMenuIconClick={handleMenuIconClick} getSelectedCity={getSelectedCity} getMalls={getMalls}/>
+        </DrawerLayoutAndroid>
+      );
+    } else {
+      return (<AppWelcome update={updateIsInitialized}/>);
+    }
   }
 }

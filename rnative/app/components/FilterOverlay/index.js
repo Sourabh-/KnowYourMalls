@@ -63,16 +63,34 @@ const FilterOverlay = ({isPopupOpen, openFilterPopup, filteredCheckboxes, handle
 			  sections={[
 			    {
 			    	data: [
-					    	{ name: "Restaurants", key: 1 },
+			    			{ name: "Accessories", key: 9 },
+			    			{ name: "Bags", key: 25 },
+			    			{ name: "Bar", key: 15 },
+			    			{ name: "Books", key: 8 },
+			    			{ name: "Bowling", key: 30 },
+			    			{ name: "Cosmetics", key: 17 },
+			    			{ name: "Design", key: 18 },
+			    			{ name: "Electronics" , key: 6},
+			    			{ name: "Eyewear", key: 19 },
+			    			{ name: "Fashion", key: 3 },
+					    	{ name: "Food", key: 1 },
 					    	{ name: "Footwear", key: 2 },
-					    	{ name: "Clothes", key: 3 },
-					    	{ name: "Super Markets", key: 4 },
-					    	{ name: "Bar" , key: 5},
-					    	{ name: "Electronics" , key: 6},
-					    	{ name: "Smartphones & Tablets", key: 7 },
-					    	{ name: "Books", key: 8 },
-					    	{ name: "Watches", key: 9 }
-			    	], 
+					    	{ name: "Fragrance", key: 22 },
+					    	{ name: "Gaming", key: 12 },
+					    	{ name: "Gifts", key: 13 },
+					    	{ name: "Home Furnishings", key: 21 },
+					    	{ name: "Jewellery", key: 10 },
+					    	{ name: "Kitchen Essentials", key: 26 },
+					    	{ name: "Miscellaneous", key: 23 },
+					    	{ name: "Mothercare", key: 28 },
+					    	{ name: "Rock Climbing", key: 27 },
+					    	{ name: "Salon & Spa", key: 24 },
+					    	{ name: "Sportswear", key: 11 },
+					    	{ name: "Stationary", key: 29 },
+					    	{ name: "Super market", key: 16 },
+					    	{ name: "Telecom", key: 14 },
+					    	{ name: "Toy Store", key: 20 }
+					      ], 
 			    	title: "CATEGORY"
 			    }
 			  ]}

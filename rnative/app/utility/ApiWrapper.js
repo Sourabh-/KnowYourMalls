@@ -12,6 +12,8 @@ export const httpGet = async (url, query) => {
 
 	try {
 		let response = await fetch(url);
+		if(response.status == 204)
+			return await [];
 		return await response.json();
 	} catch (err) {
 		throw new Error(err);

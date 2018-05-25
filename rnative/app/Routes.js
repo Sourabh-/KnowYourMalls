@@ -7,7 +7,7 @@ import StoreDetails from './pages/StoreDetails';
 
 export default class Routes extends Component {
 	render() {
-		let { handleMenuIconClicked, getSelectedCity, getMalls } = this.props;
+		let { handleMenuIconClick, getSelectedCity, getMalls } = this.props;
 		
 		return (
 			<Router>
@@ -17,7 +17,7 @@ export default class Routes extends Component {
 		          	component={Home} 
 		          	title="Home" 
 		          	initial={true} 
-		          	handleMenuIconClicked={handleMenuIconClicked}
+		          	handleMenuIconClick={handleMenuIconClick}
 		          	getSelectedCity={getSelectedCity}
 		          	getMalls={getMalls}/>
 		          <Scene key="Details" component={Details} title="Details" />

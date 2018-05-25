@@ -1,6 +1,6 @@
 {
 	"server": {
-		"url": "https://know-your-malls.herokuapp.com"
+		"url": "http://192.168.2.4:3000"
 	},
 	"endpoints": {
 		"getCities": "/city/v1/get",

@@ -2,17 +2,17 @@ import React from 'react';
 import { Header, Icon } from 'react-native-elements';
 import styles from '../../assets/styles/style';
 
-const Toolbar = ({ title, leftIcon, leftIconType, rightIcon, rightIconType, handleMenuIconClicked, handleRightIconClick }) => {
+const Toolbar = ({ title, leftIcon, leftIconType, rightIcon, rightIconType, handleMenuIconClick, handleRightIconClick }) => {
 	return (
 		<Header
-            statusBarProps={{ barStyle: 'light-content', backgroundColor: '#007f00' }}
+            statusBarProps={{ barStyle: 'light-content', backgroundColor: '#338a3e' }}
             leftComponent={
               <Icon
                     name={leftIcon}
                     type={leftIconType}
                     color="#FFFFFF"
-                    underlayColor="#1CAE21"
-                    onPress={handleMenuIconClicked}
+                    underlayColor="#66bb6a"
+                    onPress={handleMenuIconClick}
               />
             }
             centerComponent={{ text: title, style: { color: '#fff' } }}
@@ -21,11 +21,11 @@ const Toolbar = ({ title, leftIcon, leftIconType, rightIcon, rightIconType, hand
                     type={rightIconType}
                     name={rightIcon}
                     color="#FFFFFF"
-                    underlayColor="#1CAE21"
+                    underlayColor="#66bb6a"
                     onPress={handleRightIconClick ? handleRightIconClick : () => {}}
                /> : {}
             }
-            backgroundColor="#1CAE21"
+            backgroundColor="#66bb6a"
             outerContainerStyles={{height: 56}}
           />
 	)
